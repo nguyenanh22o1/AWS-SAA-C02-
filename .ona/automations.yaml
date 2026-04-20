@@ -1,0 +1,12 @@
+tasks:
+  install-aws-cli:
+    name: Install AWS CLI
+    description: Install AWS CLI v2 and enable auto-prompt
+    command: |
+      curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
+      unzip -q /tmp/awscliv2.zip -d /tmp
+      sudo /tmp/aws/install --update
+      rm -rf /tmp/awscliv2.zip /tmp/aws
+      echo "AWS CLI $(aws --version) installed"
+    triggeredBy:
+      - postDevcontainerStart
