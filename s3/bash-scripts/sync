@@ -1,1 +1,37 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+
+set -e
+
+# Check for bucket name
+if [ -z "$1" ]; then
+    echo "There needs to be a bucket name "
+    exit 1
+fi
+
+
+# Check for file name
+if [ -z "$2" ]; then
+    echo "There needs to be a bucket name "
+    exit 1
+fi
+
+BUCKET_NAME=$1
+FILE_NAME_PREFIX=$2
+
+
+OUTPUT_DIR="/tmp/s3-bash-scripts"
+
+rm -r $OUTPUT_DIR
+
+mkdir -p $OUTPUT_DIR
+
+NUM_FILES=$((RANDOM % 6 + 5))
+
+for ((i=1; i <= $NUM_FILES; i++)); do
+    random_filename="$OUTPUT_DIR/${FILE_NAME_PREFIX}_$i.txt"
+    dd if=/dev/urandom of="$random_filename" bs=1024 count=$((RANDOM % 10 + 1))
+done
+
+tree $OUTPUT_DIR
+
+aws s3 sync $OUTPUT_DIR s3://$BUCKET_NAME/files
