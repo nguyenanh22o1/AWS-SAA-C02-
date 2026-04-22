@@ -10,3 +10,38 @@ tasks:
       echo "AWS CLI $(aws --version) installed"
     triggeredBy:
       - postDevcontainerStart
+      
+  install-java:
+    name: Install Java
+    command: |
+      sudo apt-get update
+      sudo apt-get install -y openjdk-21-jdk
+      echo "Java $(java -version) installed"
+    triggeredBy:
+      - postDevcontainerStart
+
+  install-ruby:
+    name: Install Ruby
+    command: |
+      sudo apt-get update
+      sudo apt-get install -y ruby-full
+      echo "Ruby $(ruby -v) installed"
+    triggeredBy:
+      - postDevcontainerStart
+
+  #install-powershell:
+    #name: Install PowerShell
+    #description: Install PowerShell via Microsoft repository
+    #command: |
+      #sudo apt-get update
+      #sudo apt-get install -y wget apt-transport-https software-properties-common
+      #source /etc/os-release
+      #wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
+      #sudo dpkg -i packages-microsoft-prod.deb
+      #rm packages-microsoft-prod.deb
+      #sudo apt-get update
+      #sudo apt-get install -y powershell
+      #echo "PowerShell $(pwsh --version) installed"
+    #triggeredBy:
+    #  - postDevcontainerStart
+    #Install-Module -Name AWS.Tools.Installer
