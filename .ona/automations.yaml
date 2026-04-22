@@ -10,22 +10,14 @@ tasks:
       echo "AWS CLI $(aws --version) installed"
     triggeredBy:
       - postDevcontainerStart
-      
-  install-java:
-    name: Install Java
-    command: |
-      sudo apt-get update
-      sudo apt-get install -y openjdk-21-jdk
-      echo "Java $(java -version) installed"
-    triggeredBy:
-      - postDevcontainerStart
 
-  install-ruby:
-    name: Install Ruby
+  install-languages:
+    name: Install Java and Ruby
     command: |
       sudo apt-get update
-      sudo apt-get install -y ruby-full
-      echo "Ruby $(ruby -v) installed"
+      sudo apt-get install -y openjdk-21-jdk ruby-full
+      echo "Java: $(java --version)"
+      echo "Ruby: $(ruby -v)"
     triggeredBy:
       - postDevcontainerStart
 
