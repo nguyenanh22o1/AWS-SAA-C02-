@@ -1,0 +1,11 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: A sample CloudFormation template with YAML comments.
+#https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-formats.html
+Resources:
+  # https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-s3-bucket.html
+  S3Bucket:
+  
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: s3-bucket-test-cfn
