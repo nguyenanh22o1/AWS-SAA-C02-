@@ -16,6 +16,7 @@ tasks:
     command: |
       sudo apt-get update
       sudo apt-get install -y openjdk-21-jdk ruby-full
+
       echo "Java: $(java --version)"
       echo "Ruby: $(ruby -v)"
     triggeredBy:
@@ -36,6 +37,17 @@ tasks:
         sudo apt-get install -y terraform
     triggeredBy:
       - postDevcontainerStart
+  
+  install-node: 
+    name: Install Node and CDK
+    command: |
+      curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+      sudo apt-get install -y nodejs
+      sudo  npm i -g aws-cdk
+      echo "Node: $(node --version)"
+      echo "NPM: $(npm --version)"
+      echo "CDK: $(cdk --version)"
+
 
   #install-powershell:
     #name: Install PowerShell
