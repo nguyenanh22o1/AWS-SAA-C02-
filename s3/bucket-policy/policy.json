@@ -1,0 +1,19 @@
+{
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::901970227909:user/nguyenanh81ntclone"
+            },
+            "Action": [
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::bucket-policy-learning-example",
+                "arn:aws:s3:::bucket-policy-learning-example/*"
+            ]
+        }
+    ]
+}
